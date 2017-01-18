@@ -7,24 +7,7 @@ class CraigsListSpider(scrapy.Spider):
 
     def start_requests(self):
         try:
-            try: area = self.search_area
-            except: area = 'sfo'
-            try:
-                if not self.search_subarea.lower() == "none":
-                    subarea = str(self.search_subarea) + '/'
-                else: subarea = ''
-            except: subarea = ''
-            try: domain = self.search_domain
-            except: domain = 'org'
-            try: query = self.search_query
-            except: query = 'macbook'
-            try: category = self.search_category
-            except: category = 'sss'
-            try: sort = self.search_sort
-            except: sort = 'rel'
-
-            search_url = 'http://%s.craigslist.%s/search/%s%s?query=%s&sort=%s' % (area, domain, subarea, category, query, sort)
-
+            search_url = 'http://%s.craigslist.%s/search/sss?query=%s' % (self.search_city, self.search_domain, self.search_query)
             yield scrapy.Request(search_url)
         except:
             print(' ****** Error Loading argumnets  ****** ')
@@ -32,14 +15,7 @@ class CraigsListSpider(scrapy.Spider):
 
     def parse(self, response):
         for href in response.css('.result-row a::attr(href)').extract():
-            referral_url = response.request.url
-
-            new_site = response.urljoin(href)
-            area = new_site.split('.')[0].split('//')[1]
-
-            if area in referral_url:
-                print('--- match --> ', new_site)
-                yield scrapy.Request(new_site, callback=self.parse_list)
+            yield scrapy.Request(response.urljoin(href), callback=self.parse_list)
 
         next_page = response.css('a.button.next::attr(href)').extract_first()
 
@@ -155,4 +131,4 @@ class CraigsListSpider(scrapy.Spider):
             listing['specs'] = {} #get specs from amazon
             listing['processingStatus'] = 'fresh' # satus of listing processing
 
-            yield dict(listing)
+            yield listing

@@ -3,7 +3,7 @@ import React from 'react';
 // import moment from 'moment';
 // import ProgressBar from './progressbar.jsx';
 
-export class SearchBar extends React.Component {
+class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,3 +41,5 @@ export class SearchBar extends React.Component {
     );
   }
 }
+
+export default SearchBar;

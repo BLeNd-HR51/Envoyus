@@ -42,28 +42,12 @@ const baseWebpackConfig = {
     }, {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract('css!sass')
-    }, {
-      test: /\.(jpg|png)$/,
-      loader: 'file-loader',
-      options: {
-        name: '[path][name].[hash].[ext]'
-      }
-    }
-    ]
+    }]
   },
-
-  //  {
-  //     test: /\.(jpg|png)$/,
-  //     loader: 'url-loader',
-  //     options: {
-  //       limit: 25000
-  //     }
-  //   }, 
 
   sassLoader: {
     includePaths: ['src/assets/styles']
   },
-  
 
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -142,8 +126,8 @@ if (process.env.NODE_ENV === 'production') {
   });
 } else {
   module.exports = merge(baseWebpackConfig, {
-    // devtool: '#eval-source-map',
-    devtool: 'source-map',
+    devtool: '#eval-source-map',
+
     plugins: [
       new webpack.DefinePlugin({
         'process.env': { NODE_ENV: '"development"' }

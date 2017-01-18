@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for craigslistScrapy project
+# Scrapy settings for amazonScraper project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,15 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'Educational scrapping tester'
+BOT_NAME = 'amazonScraper'
 
-SPIDER_MODULES = ['craigslistScrapy.spiders']
-NEWSPIDER_MODULE = 'craigslistScrapy.spiders'
+SPIDER_MODULES = ['amazonScraper.spiders']
+NEWSPIDER_MODULE = 'amazonScraper.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'craigslistScrapy (+http://www.yourdomain.com)'
+#USER_AGENT = 'amazonScraper (+http://www.yourdomain.com)'
+USER_AGENT = "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -31,7 +32,6 @@ DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
 CONCURRENT_REQUESTS_PER_IP = 1
-
 # Disable cookies (enabled by default)
 #COOKIES_ENABLED = False
 
@@ -47,13 +47,13 @@ CONCURRENT_REQUESTS_PER_IP = 1
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'craigslistScrapy.middlewares.CraigslistsSpiderMiddleware': 543,
+#    'amazonScraper.middlewares.AmazonscraperSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'craigslistScrapy.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'amazonScraper.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -64,9 +64,9 @@ CONCURRENT_REQUESTS_PER_IP = 1
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'craigslistScrapy.pipelines.CraigslistsPipeline': 300,
-}
+#ITEM_PIPELINES = {
+#    'amazonScraper.pipelines.SomePipeline': 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
