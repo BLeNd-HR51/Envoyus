@@ -7,22 +7,39 @@ class CraigsListSpider(scrapy.Spider):
 
     def start_requests(self):
         try:
-            # search_city = self.search_city
-            print('search_city: ', self.search_city)
-            # search_domain = self.searchDomain
-            print('search_domain: ', self.search_domain)
-            # search_query = self.search_query
-            print('search_query: ', self.search_query)
+            try: area = self.search_area
+            except: area = 'sfo'
+            try:
+                if not self.search_subarea.lower() == "none":
+                    subarea = str(self.search_subarea) + '/'
+                else: subarea = ''
+            except: subarea = ''
+            try: domain = self.search_domain
+            except: domain = 'org'
+            try: query = self.search_query
+            except: query = 'macbook'
+            try: category = self.search_category
+            except: category = 'sss'
+            try: sort = self.search_sort
+            except: sort = 'rel'
 
-            search_url = 'http://%s.craigslist.%s/search/sss?query=%s' % (self.search_city, self.search_domain, self.search_query)
+            search_url = 'http://%s.craigslist.%s/search/%s%s?query=%s&sort=%s' % (area, domain, subarea, category, query, sort)
+
             yield scrapy.Request(search_url)
-
         except:
-            yield scrapy.Request('')
+            print(' ****** Error Loading argumnets  ****** ')
+            yield scrapy.Request(None)
 
     def parse(self, response):
         for href in response.css('.result-row a::attr(href)').extract():
-            yield scrapy.Request(response.urljoin(href), callback=self.parse_list)
+            referral_url = response.request.url
+
+            new_site = response.urljoin(href)
+            area = new_site.split('.')[0].split('//')[1]
+
+            if area in referral_url:
+                print('--- match --> ', new_site)
+                yield scrapy.Request(new_site, callback=self.parse_list)
 
         next_page = response.css('a.button.next::attr(href)').extract_first()
 
