@@ -1,8 +1,10 @@
-import ReactDOM from 'react-dom';
-import React from 'react';
-import Relay from 'react-relay';
+import 'babel-polyfill';
 
 import App from './src/App.jsx';
+
+import Relay from 'react-relay';
+import ReactDOM from 'react-dom';
+import React from 'react';
 
 import './src/assets/styles/main.scss';
 
@@ -12,7 +14,9 @@ class MainPageRoute extends Relay.Route {
     store: ((Component) => {
       return Relay.QL`
         query root {
-          $(Component.getFragment('store'))
+          craigslist {
+            ${Component.getFragment('store')}
+          }
         }
       `
     })
@@ -23,11 +27,11 @@ Relay.injectNetworkLayer(
   new Relay.DefaultNetworkLayer('http://localhost:3000/graphql')
 );
 
-const rootComponent = <Relay.RootContainer
-    Component={App}
-    route={new MainPageRoute()}/>;
-
 ReactDOM.render(
-  rootComponent,
+  <Relay.RootContainer
+    Component={App}
+    route={new MainPageRoute()}
+    onReadyStateChange={({ error}) => { if (error) console.error(error) }}
+  />,
   document.getElementById('app'),
 );

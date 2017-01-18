@@ -8,13 +8,13 @@ import Relay from 'react-relay';
 //   fragments: {
 //     store: () => Relay.QL`
 //       fragment on Query {
-//         craigslist(query: "i5 macbook", from: 20, size: 8) { 
+//         craigslist(query: "i5 macbook", from: 20, size: 8) {
 //           results {
 //             title
 //             price
 //             cityName
 //             imageUrls
-//           } 
+//           }
 //         }
 //       }
 //     `
@@ -63,9 +63,9 @@ class App extends React.Component {
                   padding: '15px 15px 0 15px',
                   height: '100%',
                 }}>
-                  <LabeledInput 
-                    label='Search' 
-                    placeholder='Nintendo DS' 
+                  <LabeledInput
+                    label='Search'
+                    placeholder='Nintendo DS'
                     width='100%'
                     activeClass='input-ctn-active-style' />
                 </div>
@@ -90,12 +90,12 @@ class App extends React.Component {
             </div>
           </HCenter>
         </div>
-        
+
         <HCenter>
           <div className='splash-recommend'>
             <p className='subheader'>Recommended</p>
-            <ListingGrid 
-              height='360px' 
+            <ListingGrid
+              height='360px'
               store={[
                 {
                   "title": "Apple MacBook Air 11.6\" 11  i5  1.6Ghz 4GB 128GB AppleCare",
@@ -120,21 +120,21 @@ class App extends React.Component {
   }
 }
 
-App = Relay.createContainer(App, {
+const RelayApp = Relay.createContainer(App, {
   fragments: {
     store: () => Relay.QL`
       fragment on Query {
-        craigslist(query: "i5 macbook", from: 20, size: 8) { 
+        craigslist(query: "i5 macbook", from: 20, size: 8) {
           results {
             title
             price
             cityName
             imageUrls
-          } 
+          }
         }
       }
     `
   }
-})
+});
 
-export default App;
+export default RelayApp;

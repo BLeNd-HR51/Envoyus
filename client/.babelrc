@@ -1,4 +1,5 @@
 {
+  "passPerPreset": true,
   "plugins": [
     "transform-class-properties",
     "transform-object-rest-spread",
@@ -9,6 +10,8 @@
         "./babelRelayPlugin"
       ]
     },
+    "react",
     "es2015",
-    "react"]
+    "stage-0"
+  ]
 }
