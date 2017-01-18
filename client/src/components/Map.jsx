@@ -20,7 +20,7 @@ const ShowMap = withGoogleMap(props => (
   </GoogleMap>
 ));
 
-export class Map extends React.Component {
+class Map extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -28,6 +28,7 @@ export class Map extends React.Component {
   handleMapLoad(map) {
     this._mapComponent = map;
     if (map) {
+      console.log(map.getZoom());
     }
   }
 
@@ -47,6 +48,7 @@ export class Map extends React.Component {
 
   render() {
     const markers = this.getMarkers();
+    console.log(markers);
     return (
       <div style={{ height: '100%' }}>
         <Helmet
@@ -68,3 +70,5 @@ export class Map extends React.Component {
     );
   }
 }
+
+export default Map;

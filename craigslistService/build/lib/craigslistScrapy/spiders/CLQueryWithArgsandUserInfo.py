@@ -7,28 +7,18 @@ class CraigsListSpider(scrapy.Spider):
 
     def start_requests(self):
         try:
-            try: area = self.search_area
-            except: area = 'sfo'
-            try:
-                if not self.search_subarea.lower() == "none":
-                    subarea = str(self.search_subarea) + '/'
-                else: subarea = ''
-            except: subarea = ''
-            try: domain = self.search_domain
-            except: domain = 'org'
-            try: query = self.search_query
-            except: query = 'macbook'
-            try: category = self.search_category
-            except: category = 'sss'
-            try: sort = self.search_sort
-            except: sort = 'rel'
+            # search_city = self.search_city
+            print('search_city: ', self.search_city)
+            # search_domain = self.searchDomain
+            print('search_domain: ', self.search_domain)
+            # search_query = self.search_query
+            print('search_query: ', self.search_query)
 
-            search_url = 'http://%s.craigslist.%s/search/%s%s?query=%s&sort=%s' % (area, domain, subarea, category, query, sort)
-
+            search_url = 'http://%s.craigslist.%s/search/sss?query=%s' % (self.search_city, self.search_domain, self.search_query)
             yield scrapy.Request(search_url)
+
         except:
-            print(' ****** Error Loading argumnets  ****** ')
-            yield scrapy.Request(None)
+            yield scrapy.Request('')
 
     def parse(self, response):
         for href in response.css('.result-row a::attr(href)').extract():
