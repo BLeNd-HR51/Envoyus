@@ -23,7 +23,7 @@ With the following parts:
 - [ scrapy crawl ] is the base command
 - [ clquerywithargsnouserinfo ] is the name of the spyder you want to use
 - [ -a search_area=newyork ] is the search area argument proceeded by the -a (argument flag)
-- [ -a search_subarea=brx ] is the search query argument (+ = spaces) proceeded by the -a (argument flag)
+- [ -a search_subarea=brx ] is the search subarea argument proceeded by the -a (argument flag)
 - [ -a search_query=macbook+pro ] is the search query argument (+ = spaces) proceeded by the -a (argument flag)
 - [ -o newScrapeData/mbp-nyc.json ] is the file path & name to save the output to proceeded by the -o (option flag)
 
