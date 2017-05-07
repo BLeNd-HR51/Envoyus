@@ -16,7 +16,7 @@ So, for querying San Francisco, you could
 
 Or for specific searches like for 'macbook pro' in the bronx newyork, you could use
 
-[ scrapy crawl clquerywithargsnouserinfo -a search_area=newyork -a search_query=macbook+pro -o newScrapeData/mbp-nyc.json ]
+[ scrapy crawl clquerywithargsnouserinfo -a search_area=newyork -a search_subarea=brx -a search_query=macbook+pro -o newScrapeData/mbp-nyc.json ]
 
 With the following parts:
 
